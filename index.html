@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lọc ảnh miền tần số</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>  
+  <div class="header">Frequency Domain Filtering</div>
+  <div class="body">    
+    <div class="input-section">
+      <div class="left-section">
+        <label id="input-button" for="file-input">Upload Image</label>
+        <input id="file-input" style="display: none;" type="file"/>
+      </div>      
+      <div class="mid-section">
+        <img id="img-source" alt=""/>      
+      </div>
+      <div class="right-section">
+        <div class="style-selection">  
+          <label id="smooth-lab" for="smooth-radio">Smooth</label>        
+          <input onchange="checkRadio();" type="radio" name="radio-btn" id="smooth-radio" checked="checked">  
+          <label id="sharp-lab" for="sharp-radio">Sharp</label>        
+          <input onchange="checkRadio();" id="sharp-radio" type="radio" name="radio-btn" id="sharp-radio">
+        </div>   
+        <div class="edition">
+          <div>
+            <p>Ideal filter</p>
+            <input id="ideal-radius" type="number">
+          </div>          
+          <div>
+            <p>Butterworth filter</p>
+            <input id="butter-radius" type="number">
+            <input id="butter-order" type="number">
+          </div>          
+          <div>
+            <p>Gaussian filter</p>
+            <input id="gauss-radius" type="number">
+          </div>          
+        </div>   
+        <button style="margin-top: 10px;" class="apply-button" onclick="apply_click();">Apply filter</button>  
+      </div> 
+    </div>
+    <div class="output-section">
+      <div class="output-container">
+        <p>Ideal Filter</p>
+        <canvas id="ideal-output"></canvas>
+        <div class="footer">
+          <input onclick="download_image('ideal-output');" type="button" value="Download">
+          <p id="ideal-time">Time: </p>
+        </div>        
+      </div>
+      <div class="output-container">
+        <p>Butterworth Filter</p>
+        <canvas id="butterworth-output"></canvas>
+        <div class="footer">
+          <input onclick="download_image('butterworth-output');" type="button" value="Download">
+          <p id="butter-time">Time: </p>
+        </div>        
+      </div>
+      <div class="output-container">
+        <p>Gaussian Filter</p>
+        <canvas id="gaussian-output"></canvas>
+        <div class="footer">
+          <input onclick="download_image('gaussian-output');" type="button" value="Download">
+          <p id="gauss-time">Time: </p>
+        </div>        
+      </div>
+    </div>
+  </div> 
+  <script async src="opencv.js"></script>
+  </body>
+  <script src="main.js"></script>
+  <script src="dom.js"></script>
+</html>
